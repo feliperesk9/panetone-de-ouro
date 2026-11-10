@@ -53,6 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 3. Rastreamento de Conversão / InitiateCheckout no Meta Pixel
+  const checkoutButtons = document.querySelectorAll('a[href*="cakto.com.br"]');
+  checkoutButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: 'Curso Panetone de Ouro',
+          value: 19.90,
+          currency: 'BRL'
+        });
+      }
+    });
+  });
+
   // 3. Prova Social Dinâmica e Discreta (Social Proof Toast)
   const recentBuyers = [
     { name: "Luciana Santos", city: "São Paulo/SP", time: "há 3 minutos" },
