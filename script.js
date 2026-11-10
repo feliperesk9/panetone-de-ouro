@@ -53,16 +53,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Rastreamento de Conversão / InitiateCheckout no Meta Pixel
-  const checkoutButtons = document.querySelectorAll('a[href*="cakto.com.br"]');
-  checkoutButtons.forEach(button => {
-    button.addEventListener('click', () => {
+  // 3. Rastreamento Meta Pixel: ViewContent aos 90% de Scroll
+  let viewContentTriggered = false;
+  window.addEventListener('scroll', () => {
+    if (viewContentTriggered) return;
+    
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+    
+    if ((scrollTop + windowHeight) / fullHeight >= 0.90) {
+      viewContentTriggered = true;
       if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: 'Curso Panetone de Ouro',
+        fbq('track', 'ViewContent', {
+          content_name: 'Panetone de Ouro',
+          content_type: 'product',
           value: 19.90,
           currency: 'BRL'
         });
+      }
+    }
+  }, { passive: true });
+
+  // 4. Rastreamento Meta Pixel: AddToCart nos botões "QUERO COMEÇAR AGORA" e "QUERO COMEÇAR A LUCRAR!"
+  const ctaActionButtons = document.querySelectorAll('.btn-cta, a[href*="cakto.com.br"]');
+  ctaActionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const buttonText = button.textContent.trim().toUpperCase();
+      if (
+        buttonText.includes('QUERO COMEÇAR AGORA') ||
+        buttonText.includes('QUERO COMEÇAR A LUCRAR')
+      ) {
+        if (typeof fbq === 'function') {
+          fbq('track', 'AddToCart', {
+            content_name: 'Panetone de Ouro',
+            content_type: 'product',
+            value: 19.90,
+            currency: 'BRL'
+          });
+        }
       }
     });
   });

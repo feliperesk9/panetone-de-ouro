@@ -251,17 +251,23 @@ body {
 }
 
 .cta-wrapper {
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .cta-guarantee-note {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-top: 10px;
-  display: flex;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 0;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 22px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 2px 8px rgba(90, 20, 30, 0.04);
 }
 
 .cta-guarantee-note span {
