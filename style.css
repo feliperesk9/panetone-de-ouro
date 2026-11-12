@@ -737,36 +737,17 @@ body {
   flex-shrink: 0;
 }
 
-.guarantee-seal {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: var(--gold-gradient);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #4A3300;
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
-  border: 4px double #FFFFFF;
-  text-align: center;
-  padding: 8px;
+.guarantee-seal-img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(212, 175, 55, 0.35));
+  transition: transform 0.3s ease;
 }
 
-.seal-number {
-  font-family: var(--font-title);
-  font-size: 2.3rem;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.seal-text {
-  font-size: 0.65rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.1;
-  margin-top: 2px;
+.guarantee-badge-container:hover .guarantee-seal-img {
+  transform: scale(1.05) rotate(-3deg);
 }
 
 .guarantee-content h3 {
